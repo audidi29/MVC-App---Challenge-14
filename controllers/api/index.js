@@ -1,8 +1,25 @@
+const express = require('express');
 const router = require('express').Router();
 const userRoutes = require('./userRoutes');
-const projectRoutes = require('./projectRoutes');
+const postRoutes = require('./postRoutes');
+const app = express();
 
-router.use('/users', userRoutes);
-router.use('/projects', projectRoutes);
+process.on('uncaughtException', function (err) {
+    console.log(err);
+});
 
-module.exports = router;
+app.get('/', (req, res) => {
+    try {
+        // Your code logic here 
+        res.json('Hello World!');
+    } catch (error) {
+        // Handle errors gracefully
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+const port = 3001;
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
+});
