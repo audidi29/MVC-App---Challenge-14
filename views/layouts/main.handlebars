@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fund My post!</title>
+  <title>The Tech Blog</title>
+  <link rel="stylesheet" href="/public/css/style.css"> <!-- Include your CSS file here -->
 </head>
 <body>
-    {{{ body }}}
-</body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/login">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    {{{body}}} 
+    {{#each posts}}
+      <div class="post">
+        <h2>{{title}}</h2>
+        <p>{{content}}</p>
+      </div>
+    {{/each}}
+  </main>
+
+{{#if HomePage}}
+  <!-- Check if the user is logged in -->
+  <footer>
+    <button id="new-post-btn">New Post</button>
+  </footer>
+{{/if}}
+
+  <script src="/public/js/script.js"></script>
 </html>
