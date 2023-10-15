@@ -25,4 +25,9 @@
 
 Tech Blog !
 
-{{Post}}
+{{#each posts as |post|}}
+  <div style="background-color: black; padding: 10px; border: 1px solid;">
+    {{post.name}}
+  </div>
+{{/each}}
+

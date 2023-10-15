@@ -126,9 +126,10 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const app = express();
-const PORT = 3301;
+const PORT = 3401;
 const mysql = require('mysql2');
 const path = require('path');
+const postData = require('./seeds/postData.json');
 
 
 // Connect to database
@@ -145,6 +146,12 @@ const db =mysql.createConnection(
 // Set up Handlebars as the view engine
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
+
+/// Define a route for the homepage
+app.get('/', (req, res) => {
+  // Pass the postData to the template for rendering
+  res.render('homepage', { posts: postData });
+});
 
 // Set the views directory
 app.set('views', path.join(__dirname, 'views'));
