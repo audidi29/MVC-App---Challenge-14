@@ -128,6 +128,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = 3301;
 const mysql = require('mysql2');
+const path = require('path');
+
 
 // Connect to database
 const db =mysql.createConnection( 
@@ -140,17 +142,29 @@ const db =mysql.createConnection(
 }
 );
 
-// Middleware to parse JSON request bodies
-app.use(bodyParser.json());
-
 // Set up Handlebars as the view engine
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
+// Set the views directory
+app.set('views', path.join(__dirname, 'views'));
+
+// Your routes and other middleware go here...
 app.get('/', (req, res) => {
-  // Render the home.handlebars template
-  res.render('home', { message: 'Welcome to Handlebars Example!' });
+  res.render('homepage'); // Assuming "home.handlebars" exists in the "views" directory
 });
+
+// Middleware to parse JSON request bodies
+app.use(bodyParser.json());
+
+// // Set up Handlebars as the view engine
+// app.engine('handlebars', exphbs());
+// app.set('view engine', 'handlebars');
+
+// app.get('/', (req, res) => {
+//   // Render the home.handlebars template
+//   res.render('home', { message: 'Welcome to Handlebars Example!' });
+// });
 
 app.post('/divide', (req, res) => {
   try {
